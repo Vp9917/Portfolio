@@ -5,584 +5,434 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vidhi Patel — Analytics Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --page: #f5f6f8;
-    --card: #ffffff;
-    --ink: #1b2430;
-    --ink-soft: #626d7d;
-    --ink-faint: #9aa4b2;
-    --line: #e4e7ec;
-    --navy: #1f2a44;
-    --navy-soft: #3d4a6b;
-    --teal: #0f9a92;
-    --amber: #e8a13a;
-    --coral: #e0685a;
-    --indigo: #5b5fc7;
+    --paper: #f2f3f6;
+    --surface: #ffffff;
+    --ink: #171b23;
+    --ink-soft: #5a6270;
+    --ink-faint: #9198a4;
+    --line: #dfe2e9;
+    --cobalt: #2c4bd4;
+    --cobalt-soft: #eef0fc;
+    --amber: #e39a2f;
+    --teal: #148f80;
+    --coral: #d8574c;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
   body {
-    background: var(--page);
+    background: var(--paper);
     color: var(--ink);
     font-family: 'Inter', sans-serif;
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
-
-  a { color: var(--teal); text-decoration: none; }
+  a { color: var(--cobalt); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; }
-  .display { font-family: 'Space Grotesk', sans-serif; }
-  .mono { font-family: 'IBM Plex Mono', monospace; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 3px; }
+  .display { font-family: 'Newsreader', serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  img { display: block; max-width: 100%; }
 
-  .shell {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    min-height: 100vh;
+  /* ---------- top bar ---------- */
+  header.topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(242,243,246,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
   }
-
-  /* ---------- sidebar ---------- */
-  .sidebar {
-    background: var(--navy);
-    color: #fff;
-    padding: 32px 24px;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  .sb-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 40px;
-  }
-  .sb-mark {
-    width: 32px; height: 32px;
-    border-radius: 8px;
-    background: var(--teal);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    color: #fff;
-    flex-shrink: 0;
-  }
-  .sb-brand-text { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; }
-  .sb-brand-sub { font-size: 11px; color: rgba(255,255,255,0.55); }
-
-  .sb-section-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.4);
-    margin: 22px 0 10px;
-    padding-left: 12px;
-  }
-  .sb-nav { list-style: none; display: flex; flex-direction: column; gap: 2px; }
-  .sb-nav a {
-    display: flex; align-items: center; gap: 10px;
-    padding: 9px 12px;
-    border-radius: 6px;
-    font-size: 13.5px;
-    color: rgba(255,255,255,0.72);
-  }
-  .sb-nav a:hover { background: rgba(255,255,255,0.06); text-decoration: none; color: #fff; }
-  .sb-nav .ico {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: currentColor; opacity: 0.55; flex-shrink: 0;
-  }
-
-  .sb-footer {
-    margin-top: auto;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-  }
-  .sb-footer a {
-    display: block; font-size: 12.5px; color: rgba(255,255,255,0.65);
-    padding: 6px 0;
-  }
-  .sb-footer a:hover { color: #fff; text-decoration: none; }
-
-  /* ---------- main ---------- */
-  main { padding: 40px 48px 80px; max-width: 980px; }
-
-  .topline {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 8px; flex-wrap: wrap; gap: 16px;
-  }
-  .eyebrow {
-    font-size: 12px; color: var(--ink-faint); text-transform: uppercase;
-    letter-spacing: 0.08em; margin-bottom: 6px;
-  }
-  h1.name {
-    font-size: 34px; font-weight: 700; letter-spacing: -0.01em;
-  }
-  .role-line { color: var(--ink-soft); font-size: 15.5px; margin-top: 6px; max-width: 560px; }
-
-  .contact-pills { display: flex; gap: 8px; flex-wrap: wrap; }
-  .pill {
-    font-size: 12.5px; padding: 7px 13px; border-radius: 20px;
-    background: var(--card); border: 1px solid var(--line); color: var(--ink-soft);
-  }
-  .pill:hover { border-color: var(--navy-soft); color: var(--navy); text-decoration: none; }
-
-  /* ---------- KPI strip ---------- */
-  .kpi-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin: 32px 0 48px;
-  }
-  .kpi-card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
-    padding: 18px 20px;
-  }
-  .kpi-num {
-    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 26px;
-    display: flex; align-items: baseline; gap: 6px;
-  }
-  .kpi-num .unit { font-size: 15px; font-weight: 600; }
-  .kpi-label { font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
-  .kpi-bar { display: flex; gap: 2px; margin-top: 12px; align-items: flex-end; height: 20px; }
-  .kpi-bar i { display: block; width: 5px; border-radius: 1px; }
-
-  /* ---------- panel / card ---------- */
-  .panel {
-    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-    padding: 28px 32px; margin-bottom: 24px;
-  }
-  .panel-head {
+  .topbar-inner {
+    max-width: 1120px; margin: 0 auto; padding: 18px 40px;
     display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 22px; flex-wrap: wrap; gap: 10px;
   }
-  .panel-head h2 {
-    font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 18px;
+  .wordmark { font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+  .wordmark span { color: var(--cobalt); }
+  nav.topnav { display: flex; gap: 26px; }
+  nav.topnav a { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+  nav.topnav a:hover { color: var(--ink); text-decoration: none; }
+  .topbar-cta {
+    font-family: 'JetBrains Mono', monospace; font-size: 12.5px; padding: 8px 14px;
+    border: 1px solid var(--ink); border-radius: 20px; color: var(--ink);
   }
-  .panel-tag {
-    font-size: 11px; font-family: 'IBM Plex Mono', monospace; color: var(--ink-faint);
-    background: var(--page); border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px;
-  }
+  .topbar-cta:hover { background: var(--ink); color: var(--paper); text-decoration: none; }
 
-  .about-text p { color: var(--ink-soft); margin-bottom: 14px; max-width: 680px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 64px 0 60px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
+  .hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--teal); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 18px; }
+  h1.headline { font-size: clamp(34px, 4.6vw, 52px); font-weight: 500; line-height: 1.12; letter-spacing: -0.01em; }
+  h1.headline em { font-style: italic; color: var(--cobalt); }
+  .hero-sub { color: var(--ink-soft); font-size: 16px; margin-top: 20px; max-width: 460px; }
+  .hero-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .link-chip { font-size: 13px; padding: 9px 15px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); color: var(--ink-soft); }
+  .link-chip:hover { border-color: var(--cobalt); color: var(--cobalt); text-decoration: none; }
+
+  /* sparkline stat card — the signature element */
+  .stat-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
+  .stat-card-head { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px; }
+  .stat-row { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-top: 1px solid var(--line); }
+  .stat-row:first-of-type { border-top: none; }
+  .stat-row svg { flex-shrink: 0; }
+  .stat-num { font-family: 'Newsreader', serif; font-weight: 600; font-size: 21px; white-space: nowrap; }
+  .stat-label { font-size: 12px; color: var(--ink-soft); line-height: 1.4; }
+
+  /* ---------- sections ---------- */
+  section { padding: 54px 0; border-top: 1px solid var(--line); }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 30px; }
+  .sec-head h2 { font-family: 'Newsreader', serif; font-weight: 600; font-size: 27px; letter-spacing: -0.01em; }
+  .sec-lede { font-size: 13.5px; color: var(--ink-faint); max-width: 320px; }
+
+  .about-text p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 16px; max-width: 660px; }
   .about-text p:last-child { margin-bottom: 0; }
+  .about-text strong { color: var(--ink); font-weight: 600; }
+  blockquote.pull {
+    font-family: 'Newsreader', serif; font-style: italic; font-size: 20px; color: var(--ink);
+    border-left: 3px solid var(--cobalt); padding-left: 20px; margin: 26px 0; max-width: 560px;
+  }
 
   /* ---------- experience ---------- */
-  .job { padding: 20px 0; border-bottom: 1px solid var(--line); }
-  .job:first-child { padding-top: 0; }
-  .job:last-child { border-bottom: none; padding-bottom: 0; }
-  .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .job-title { font-weight: 600; font-size: 15px; }
-  .job-title .company { color: var(--teal); font-weight: 600; }
-  .job-date { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink-faint); white-space: nowrap; }
-  .job ul { list-style: none; margin-top: 12px; display: grid; gap: 8px; }
-  .job ul li { padding-left: 18px; position: relative; color: var(--ink-soft); font-size: 14px; }
-  .job ul li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--indigo); }
+  .job { display: grid; grid-template-columns: 220px 1fr; gap: 30px; padding: 30px 0; border-top: 1px solid var(--line); }
+  .job:first-child { border-top: none; padding-top: 0; }
+  .job-meta .job-title { font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px; margin-bottom: 4px; }
+  .job-meta .company { color: var(--cobalt); font-size: 14px; font-weight: 500; }
+  .job-meta .job-date { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--ink-faint); margin-top: 8px; }
+  .job ul { list-style: none; display: grid; gap: 11px; }
+  .job ul li { padding-left: 18px; position: relative; color: var(--ink-soft); font-size: 14.5px; }
+  .job ul li::before { content: "·"; position: absolute; left: 2px; top: -3px; color: var(--cobalt); font-size: 22px; }
   .job ul li strong { color: var(--ink); font-weight: 600; }
 
-  /* ---------- skills grid ---------- */
-  .skill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .skill-block { border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
-  .skill-block-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  /* ---------- skills ---------- */
+  .skill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .skill-block { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; }
+  .skill-block-head { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
   .skill-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
-  .skill-block h3 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink); }
-  .skill-block p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; }
+  .skill-block h3 { font-size: 12.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+  .skill-block p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.75; }
 
-  /* ---------- project ---------- */
-  .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 22px; }
-  .chip {
-    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; padding: 5px 11px; border-radius: 5px;
-    background: rgba(15, 154, 146, 0.08); border: 1px solid rgba(15, 154, 146, 0.28); color: var(--teal);
-  }
-  .proj-desc { color: var(--ink-soft); font-size: 14.5px; margin-bottom: 22px; max-width: 680px; }
+  /* ---------- project (case study) ---------- */
+  .case-media { border-radius: 14px; overflow: hidden; margin-bottom: 30px; border: 1px solid var(--line); position: relative; }
+  .case-media img { width: 100%; max-height: 320px; object-fit: cover; }
+  .case-media-cap { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-faint); margin-top: 8px; }
 
-  .metric-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
-  .metric-tile { background: var(--page); border-radius: 8px; padding: 14px 16px; }
-  .metric-tile .m-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; color: var(--navy); }
-  .metric-tile .m-label { font-size: 11.5px; color: var(--ink-soft); margin-top: 2px; }
+  h3.case-title { font-family: 'Newsreader', serif; font-size: 22px; font-weight: 600; margin-bottom: 10px; }
+  .case-desc { color: var(--ink-soft); font-size: 15px; margin-bottom: 24px; max-width: 660px; }
 
-  .finding-list { display: grid; gap: 12px; margin-bottom: 22px; }
-  .finding { display: flex; gap: 12px; align-items: flex-start; }
-  .finding .dot { width: 20px; height: 20px; border-radius: 5px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; margin-top: 2px; }
+  .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .chip { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 6px 12px; border-radius: 5px; background: var(--cobalt-soft); border: 1px solid #d3daf8; color: var(--cobalt); }
+
+  .metric-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+  .metric-tile { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
+  .metric-tile .m-num { font-family: 'Newsreader', serif; font-weight: 600; font-size: 23px; color: var(--cobalt); }
+  .metric-tile .m-label { font-size: 11.5px; color: var(--ink-soft); margin-top: 4px; }
+
+  .finding-list { display: grid; gap: 14px; margin-bottom: 28px; }
+  .finding { display: flex; gap: 14px; align-items: flex-start; }
+  .finding .dot { width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; margin-top: 2px; }
   .finding p { color: var(--ink-soft); font-size: 14px; margin: 0; }
   .finding p strong { color: var(--ink); font-weight: 600; }
+  .finding code { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; background: var(--paper); padding: 1px 5px; border-radius: 3px; }
 
-  .proj-links { display: flex; gap: 10px; }
-  .btn {
-    font-size: 13px; font-weight: 600; padding: 9px 16px; border-radius: 7px;
-    border: 1px solid var(--line); color: var(--ink); display: inline-flex; align-items: center; gap: 6px;
-  }
-  .btn:hover { border-color: var(--navy); text-decoration: none; }
-  .btn.primary { background: var(--navy); color: #fff; border-color: var(--navy); }
-  .btn.primary:hover { background: var(--navy-soft); }
+  .case-links { display: flex; gap: 10px; }
+  .btn { font-size: 13px; font-weight: 600; padding: 10px 18px; border-radius: 7px; border: 1px solid var(--line); color: var(--ink); display: inline-flex; align-items: center; gap: 6px; background: var(--surface); }
+  .btn:hover { border-color: var(--cobalt); color: var(--cobalt); text-decoration: none; }
+  .btn.primary { background: var(--cobalt); color: #fff; border-color: var(--cobalt); }
+  .btn.primary:hover { background: #24409f; color: #fff; }
 
   /* ---------- education ---------- */
-  .edu-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; padding: 13px 0; border-bottom: 1px solid var(--line); }
-  .edu-row:last-child { border-bottom: none; }
-  .edu-degree { font-size: 14px; font-weight: 600; }
-  .edu-school { color: var(--ink-soft); font-size: 13px; font-weight: 400; margin-top: 2px; }
-  .edu-date { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink-faint); white-space: nowrap; }
+  .edu-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; padding: 16px 0; border-top: 1px solid var(--line); }
+  .edu-row:first-child { border-top: none; padding-top: 0; }
+  .edu-degree { font-family: 'Newsreader', serif; font-size: 15.5px; font-weight: 600; }
+  .edu-school { color: var(--ink-soft); font-size: 13px; margin-top: 3px; }
+  .edu-date { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--ink-faint); white-space: nowrap; }
+  .cert-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .cert-chip { font-size: 12px; padding: 7px 13px; border-radius: 20px; background: #fbf1e2; border: 1px solid #f0dcb5; color: #8a5c14; }
 
-  .cert-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-  .cert-chip {
-    font-size: 12px; padding: 6px 12px; border-radius: 20px;
-    background: rgba(232, 161, 58, 0.1); border: 1px solid rgba(232, 161, 58, 0.32); color: #8a5c14;
-  }
-
-  footer.contact-panel { text-align: left; }
-  .contact-links { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; }
-  .contact-links a { font-size: 13.5px; color: var(--navy); font-weight: 600; }
-  .contact-links a span { color: var(--ink-faint); font-weight: 400; margin-right: 4px; }
-
-  /* mobile sidebar toggle */
-  .mobile-topbar { display: none; }
-
-  @media (max-width: 860px) {
-    .shell { grid-template-columns: 1fr; }
-    .sidebar { display: none; }
-    .mobile-topbar {
-      display: flex; align-items: center; gap: 10px; padding: 18px 20px;
-      background: var(--navy); color: #fff; position: sticky; top: 0; z-index: 5;
-    }
-    main { padding: 28px 20px 60px; }
-    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
-    .skill-grid { grid-template-columns: 1fr; }
-    .metric-row { grid-template-columns: 1fr; }
-    .panel { padding: 22px 20px; }
-  }
+  /* ---------- footer ---------- */
+  footer.contact-panel { padding: 60px 0 80px; }
+  footer.contact-panel h2 { font-family: 'Newsreader', serif; font-size: 30px; font-weight: 600; margin-bottom: 12px; }
+  footer.contact-panel p { color: var(--ink-soft); font-size: 15px; max-width: 440px; margin-bottom: 26px; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .contact-links a { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); padding: 12px 16px; border-radius: 8px; }
+  .contact-links a span { color: var(--ink-faint); margin-right: 6px; }
+  .contact-links a:hover { border-color: var(--cobalt); color: var(--cobalt); text-decoration: none; }
 
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  @media (max-width: 860px) {
+    .topbar-inner { padding: 16px 20px; }
+    nav.topnav { display: none; }
+    .wrap { padding: 0 20px; }
+    .hero { grid-template-columns: 1fr; padding-top: 40px; gap: 30px; }
+    .skill-grid { grid-template-columns: 1fr; }
+    .metric-row { grid-template-columns: 1fr; }
+    .job { grid-template-columns: 1fr; gap: 10px; }
+    section { padding: 40px 0; }
+  }
 </style>
 </head>
 <body>
 
-<div class="mobile-topbar">
-  <div class="sb-mark" style="width:26px;height:26px;font-size:12px;">VP</div>
-  <span class="display" style="font-weight:600;font-size:14px;">Vidhi Patel</span>
-</div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="wordmark">Vidhi Patel <span>·</span> Analytics Engineer</div>
+    <nav class="topnav">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+    </nav>
+    <a class="topbar-cta" href="mailto:vapatel.7969@gmail.com">Get in touch</a>
+  </div>
+</header>
 
-<div class="shell">
+<div class="wrap">
 
-  <aside class="sidebar">
-    <div class="sb-brand">
-      <div class="sb-mark">VP</div>
-      <div>
-        <div class="sb-brand-text">Vidhi Patel</div>
-        <div class="sb-brand-sub">Analytics Engineer</div>
+  <section class="hero" style="border-top:none;">
+    <div>
+      <div class="hero-kicker">Hamden, CT · Open to new roles</div>
+      <h1 class="headline display">I turn raw data into <em>decisions people actually act on.</em></h1>
+      <p class="hero-sub">Analytics engineer designing cloud data pipelines,
+        automating reporting, and building the dashboards leadership opens
+        every morning — not just the ones that ship and get forgotten.</p>
+      <div class="hero-links">
+        <a class="link-chip" href="https://github.com/Vp9917" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="link-chip" href="https://linkedin.com/in/vidhi-patel232" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="link-chip" href="mailto:vapatel.7969@gmail.com">vapatel.7969@gmail.com</a>
+        <a class="link-chip" href="tel:+13237136003">+1 323-713-6003</a>
       </div>
     </div>
 
-    <div class="sb-section-label">Report pages</div>
-    <ul class="sb-nav">
-      <li><a href="#about"><span class="ico"></span>About</a></li>
-      <li><a href="#experience"><span class="ico"></span>Experience</a></li>
-      <li><a href="#skills"><span class="ico"></span>Skills</a></li>
-      <li><a href="#projects"><span class="ico"></span>Projects</a></li>
-      <li><a href="#education"><span class="ico"></span>Education</a></li>
-    </ul>
+    <div class="stat-card">
+      <div class="stat-card-head">Impact, by the numbers</div>
 
-    <div class="sb-section-label">Connect</div>
-    <ul class="sb-nav">
-      <li><a href="mailto:vapatel.7969@gmail.com"><span class="ico"></span>Email</a></li>
-      <li><a href="https://linkedin.com/in/vidhi-patel232" target="_blank" rel="noopener"><span class="ico"></span>LinkedIn</a></li>
-      <li><a href="https://github.com/Vp9917" target="_blank" rel="noopener"><span class="ico"></span>GitHub</a></li>
-    </ul>
-
-    <div class="sb-footer">
-      <a href="mailto:vapatel.7969@gmail.com">vapatel.7969@gmail.com</a>
-      <a href="tel:+13237136003">+1 323-713-6003</a>
-      <a href="#" style="pointer-events:none;">Hamden, CT</a>
-    </div>
-  </aside>
-
-  <main>
-
-    <div class="topline">
-      <div>
-        <div class="eyebrow">Portfolio — report view</div>
-        <h1 class="name display">Vidhi Patel</h1>
-        <p class="role-line">Analytics Engineer designing scalable data pipelines,
-          optimizing cloud infrastructure, and translating complex metrics into
-          decisions leadership can act on.</p>
+      <div class="stat-row">
+        <svg width="52" height="28" viewBox="0 0 52 28" fill="none"><polyline points="2,24 12,20 22,22 32,10 42,12 50,3" stroke="#148f80" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="3" r="3" fill="#148f80"/></svg>
+        <div><div class="stat-num" style="color:#148f80;">7 hrs/wk</div><div class="stat-label">saved via automated compliance reporting</div></div>
       </div>
-      <div class="contact-pills">
-        <a class="pill" href="https://github.com/Vp9917" target="_blank" rel="noopener">GitHub</a>
-        <a class="pill" href="https://linkedin.com/in/vidhi-patel232" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="pill" href="mailto:vapatel.7969@gmail.com">Email</a>
+      <div class="stat-row">
+        <svg width="52" height="28" viewBox="0 0 52 28" fill="none"><rect x="2" y="16" width="7" height="10" fill="#2c4bd4" opacity="0.35"/><rect x="13" y="12" width="7" height="14" fill="#2c4bd4" opacity="0.55"/><rect x="24" y="8" width="7" height="18" fill="#2c4bd4" opacity="0.75"/><rect x="35" y="2" width="7" height="24" fill="#2c4bd4"/></svg>
+        <div><div class="stat-num" style="color:#2c4bd4;">30% faster</div><div class="stat-label">ETL prep with Hadoop, NiFi and Spark</div></div>
+      </div>
+      <div class="stat-row">
+        <svg width="52" height="28" viewBox="0 0 52 28" fill="none"><path d="M2 22 A 24 24 0 0 1 42 12" stroke="#e39a2f" stroke-width="4" stroke-linecap="round" fill="none"/></svg>
+        <div><div class="stat-num" style="color:#e39a2f;">20% lift</div><div class="stat-label">EHR usability from cross-team overhaul</div></div>
+      </div>
+      <div class="stat-row">
+        <svg width="52" height="28" viewBox="0 0 52 28" fill="none"><polyline points="2,26 2,26 15,20 28,22 40,6 50,8" stroke="#d8574c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <div><div class="stat-num" style="color:#d8574c;">100k+ orders</div><div class="stat-label">modeled in featured MySQL project</div></div>
       </div>
     </div>
+  </section>
 
-    <div class="kpi-strip">
-      <div class="kpi-card">
-        <div class="kpi-num" style="color:var(--teal);">7<span class="unit">hrs/wk</span></div>
-        <div class="kpi-label">Saved via automated compliance reporting</div>
-        <div class="kpi-bar">
-          <i style="height:40%;background:#c9ece8;"></i><i style="height:55%;background:#a7e0da;"></i>
-          <i style="height:70%;background:#6fcec4;"></i><i style="height:100%;background:var(--teal);"></i>
-        </div>
+  <section id="about">
+    <div class="sec-head">
+      <h2>About</h2>
+      <span class="sec-lede">Where technical systems meet the people who need the answer.</span>
+    </div>
+    <div class="about-text">
+      <p>I'm a results-driven analytics engineer with hands-on experience
+        designing scalable pipelines, optimizing cloud infrastructure, and
+        delivering business-critical insights. I've automated reporting
+        workflows that save teams hours every week, translated complex
+        metrics into recommendations for senior leadership, and integrated
+        AI-assisted discovery tools into analytics platforms.</p>
+      <blockquote class="pull">I care as much about why a number is right as I do about getting it in front of the people who need it.</blockquote>
+      <p>I'm comfortable bridging <strong>technical data systems</strong> and
+        <strong>non-technical stakeholders</strong> — translating pipeline
+        internals into language a VP can act on in a five-minute readout.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head">
+      <h2>Experience</h2>
+      <span class="sec-lede">Two roles, one throughline: making messy systems legible.</span>
+    </div>
+
+    <div class="job">
+      <div class="job-meta">
+        <div class="job-title display">Analytics Engineer</div>
+        <div class="company">Radiology Partners</div>
+        <div class="job-date mono">Oct 2024 – Jul 2026</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-num" style="color:var(--indigo);">30<span class="unit">%</span></div>
-        <div class="kpi-label">Faster ETL prep with Hadoop, NiFi and Spark</div>
-        <div class="kpi-bar">
-          <i style="height:60%;background:#d3d4f2;"></i><i style="height:45%;background:#b6b8e8;"></i>
-          <i style="height:80%;background:#9497db;"></i><i style="height:100%;background:var(--indigo);"></i>
-        </div>
+      <ul>
+        <li>Re-engineered legacy data extraction and financial cash
+          reconciliation pipelines by migrating stored procedures from SSMS
+          and billing systems to <strong>Azure Databricks</strong>, converting
+          manual request models into a scalable self-service platform.</li>
+        <li>Co-developed an interactive monitoring application to track IPI
+          performance, embedding custom views and an <strong>AI-powered
+          natural language query assistant</strong> to accelerate user discovery.</li>
+        <li>Systematized audit and coding compliance reporting workflows
+          using custom Python scripts, <strong>saving 7 hours weekly</strong>
+          while eliminating processing errors.</li>
+        <li>Managed daily operational reporting pipelines utilizing
+          optimized stored procedures and analytical functions to ensure
+          precise, timely scheduled delivery.</li>
+        <li>Deployed automated data narratives and executive Power BI
+          dashboards that translated complex analytical trends into clear,
+          actionable business guidance for senior leadership.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-meta">
+        <div class="job-title display">Data Analyst</div>
+        <div class="company">Molina Healthcare</div>
+        <div class="job-date mono">Aug 2023 – Oct 2024</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-num" style="color:var(--amber);">20<span class="unit">%</span></div>
-        <div class="kpi-label">EHR usability lift from cross-team overhaul</div>
-        <div class="kpi-bar">
-          <i style="height:35%;background:#f6ddb2;"></i><i style="height:65%;background:#f2ca85;"></i>
-          <i style="height:50%;background:#edb85a;"></i><i style="height:100%;background:var(--amber);"></i>
-        </div>
+      <ul>
+        <li>Architected scalable enterprise models and dashboards within
+          <strong>Tableau</strong>, delivering real-time visibility into
+          healthcare metrics to guide strategic planning.</li>
+        <li>Mechanized end-to-end ETL pipelines utilizing <strong>Hadoop,
+          Apache NiFi, and Spark</strong>, slashing manual preparation time
+          by <strong>30%</strong>.</li>
+        <li>Executed statistical analyses on large-scale clinical datasets
+          using R and SPSS, uncovering key trends that reduced readmission rates.</li>
+        <li>Partnered with cross-functional IT and clinical departments to
+          overhaul Electronic Health Record (EHR) systems, boosting
+          operational usability by <strong>20%</strong>.</li>
+        <li>Built dynamic visual reports across Google Data Studio and
+          Plotly to elevate stakeholder literacy and accelerate executive
+          decision-making.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head">
+      <h2>Skills</h2>
+      <span class="sec-lede">The toolkit behind every pipeline and dashboard above.</span>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-block">
+        <div class="skill-block-head"><span class="skill-dot" style="background:#2c4bd4;"></span><h3>Languages &amp; scripting</h3></div>
+        <p>SQL (T-SQL, Spark SQL), Python (Pandas, NumPy, Matplotlib,
+          Seaborn), R, DAX, Power Query M, JavaScript, HTML5/CSS3</p>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-num" style="color:var(--coral);">100<span class="unit">k+</span></div>
-        <div class="kpi-label">Orders modeled in featured MySQL project</div>
-        <div class="kpi-bar">
-          <i style="height:50%;background:#f4cec8;"></i><i style="height:70%;background:#eeaea5;"></i>
-          <i style="height:40%;background:#e88f83;"></i><i style="height:100%;background:var(--coral);"></i>
-        </div>
+      <div class="skill-block">
+        <div class="skill-block-head"><span class="skill-dot" style="background:#148f80;"></span><h3>Cloud &amp; data engineering</h3></div>
+        <p>Azure Databricks, ETL/ELT pipeline design, Star/Snowflake
+          schemas, database migration, performance tuning, Hadoop, Apache
+          NiFi, Spark, REST APIs</p>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-head"><span class="skill-dot" style="background:#e39a2f;"></span><h3>Analytics &amp; visualization</h3></div>
+        <p>Power BI (Desktop, Service, Paginated Reports), Tableau, SSMS,
+          Jupyter Notebooks, Git, Google Data Studio, Plotly, SPSS</p>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-head"><span class="skill-dot" style="background:#d8574c;"></span><h3>Governance &amp; methods</h3></div>
+        <p>Data stewardship, Row-Level Security (RLS), metadata governance,
+          time series analysis, statistical modeling</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-head">
+      <h2>Featured project</h2>
+      <span class="sec-lede">A case study, not a bullet point.</span>
+    </div>
+
+    <div class="case-media">
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Statistics and charts open on a laptop screen, representing the SQL analysis layer of the project">
+    </div>
+    <div class="case-media-cap mono">the analysis layer — SQL queries against the loaded Olist dataset</div>
+
+    <h3 class="case-title" style="margin-top:26px;">E-Commerce Analytics Database</h3>
+    <p class="case-desc">Built a relational analytics database from 7 raw
+      CSVs (the Olist Brazilian e-commerce dataset, ~100k orders), with a
+      Python loading pipeline, documented data quality checks, and SQL
+      analysis answering specific business questions about delivery
+      performance and revenue.</p>
+
+    <div class="stack-row">
+      <span class="chip">MySQL</span>
+      <span class="chip">Python</span>
+      <span class="chip">pandas</span>
+      <span class="chip">SQLAlchemy</span>
+      <span class="chip">matplotlib</span>
+      <span class="chip">Git</span>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-tile"><div class="m-num">7</div><div class="m-label">Related tables designed</div></div>
+      <div class="metric-tile"><div class="m-num">99,441</div><div class="m-label">Customer orders loaded</div></div>
+      <div class="metric-tile"><div class="m-num">2</div><div class="m-label">Data quality issues found and documented</div></div>
+    </div>
+
+    <div class="finding-list">
+      <div class="finding">
+        <span class="dot" style="background:#e7f4f2;color:#148f80;">DQ</span>
+        <p><strong>Data quality:</strong> found and documented duplicate
+          <code>review_id</code> values in the raw reviews data; deduplicated
+          with a stated, reproducible rule rather than silently dropping rows.</p>
+      </div>
+      <div class="finding">
+        <span class="dot" style="background:#eef0fc;color:#2c4bd4;">Q</span>
+        <p><strong>Analysis:</strong> queried the relationship between
+          delivery lateness and customer review scores, and revenue broken
+          down by state. </p>
+      </div>
+      <div class="finding">
+        <span class="dot" style="background:#fbf1e2;color:#8a5c14;">SE</span>
+        <p><strong>Engineering:</strong> credentials kept out of version
+          control via <code>.env</code> + <code>python-dotenv</code>;
+          environment reproducible via <code>requirements.txt</code>.</p>
       </div>
     </div>
 
-    <section class="panel" id="about">
-      <div class="panel-head">
-        <h2>About</h2>
-        <span class="panel-tag mono">page 01</span>
-      </div>
-      <div class="about-text">
-        <p>I'm a results-driven analytics engineer with hands-on experience
-          designing scalable pipelines, optimizing cloud infrastructure, and
-          delivering business-critical insights. I've automated reporting
-          workflows that save teams hours every week, translated complex
-          metrics into recommendations for senior leadership, and integrated
-          AI-assisted discovery tools into analytics platforms.</p>
-        <p>I'm comfortable bridging technical data systems and non-technical
-          stakeholders, and I care as much about why a number is right as
-          about getting it in front of the people who need it.</p>
-      </div>
-    </section>
+    <div class="case-links">
+      <a class="btn primary" href="https://github.com/Vp9917/ecommerce-analytics" target="_blank" rel="noopener">View repo</a>
+      <a class="btn" href="https://github.com/Vp9917/ecommerce-analytics/blob/main/README.md" target="_blank" rel="noopener">Read README</a>
+    </div>
+  </section>
 
-    <section class="panel" id="experience">
-      <div class="panel-head">
-        <h2>Experience</h2>
-        <span class="panel-tag mono">page 02</span>
-      </div>
+  <section id="education">
+    <div class="sec-head">
+      <h2>Education &amp; certifications</h2>
+    </div>
 
-      <div class="job">
-        <div class="job-head">
-          <div class="job-title">Analytics Engineer <span class="company">— Radiology Partners</span></div>
-          <div class="job-date mono">Oct 2024 – Jul 2026</div>
-        </div>
-        <ul>
-          <li>Re-engineered legacy data extraction and financial cash
-            reconciliation pipelines by migrating stored procedures from SSMS
-            and billing systems to <strong>Azure Databricks</strong>, converting
-            manual request models into a scalable self-service platform.</li>
-          <li>Co-developed an interactive monitoring application to track IPI
-            performance, embedding custom views and an <strong>AI-powered
-            natural language query assistant</strong> to accelerate user discovery.</li>
-          <li>Systematized audit and coding compliance reporting workflows
-            using custom Python scripts, <strong>saving 7 hours weekly</strong>
-            while eliminating processing errors.</li>
-          <li>Managed daily operational reporting pipelines utilizing
-            optimized stored procedures and analytical functions to ensure
-            precise, timely scheduled delivery.</li>
-          <li>Deployed automated data narratives and executive Power BI
-            dashboards that translated complex analytical trends into clear,
-            actionable business guidance for senior leadership.</li>
-        </ul>
-      </div>
+    <div class="edu-row">
+      <div><div class="edu-degree">Master of Science, Engineering and Management</div><div class="edu-school">Westcliff University</div></div>
+      <div class="edu-date mono">Jul 2026 – Present</div>
+    </div>
+    <div class="edu-row">
+      <div><div class="edu-degree">Master of Science, Computer Science</div><div class="edu-school">University of New Haven</div></div>
+      <div class="edu-date mono">Aug 2021 – May 2023</div>
+    </div>
+    <div class="edu-row">
+      <div><div class="edu-degree">Bachelor of Engineering, Computer Engineering</div><div class="edu-school">Alpha College of Engineering &amp; Technology</div></div>
+      <div class="edu-date mono">Aug 2016 – Aug 2020</div>
+    </div>
 
-      <div class="job">
-        <div class="job-head">
-          <div class="job-title">Data Analyst <span class="company">— Molina Healthcare</span></div>
-          <div class="job-date mono">Aug 2023 – Oct 2024</div>
-        </div>
-        <ul>
-          <li>Architected scalable enterprise models and dashboards within
-            <strong>Tableau</strong>, delivering real-time visibility into
-            healthcare metrics to guide strategic planning.</li>
-          <li>Mechanized end-to-end ETL pipelines utilizing <strong>Hadoop,
-            Apache NiFi, and Spark</strong>, slashing manual preparation time
-            by <strong>30%</strong>.</li>
-          <li>Executed statistical analyses on large-scale clinical datasets
-            using R and SPSS, uncovering key trends that reduced readmission rates.</li>
-          <li>Partnered with cross-functional IT and clinical departments to
-            overhaul Electronic Health Record (EHR) systems, boosting
-            operational usability by <strong>20%</strong>.</li>
-          <li>Built dynamic visual reports across Google Data Studio and
-            Plotly to elevate stakeholder literacy and accelerate executive
-            decision-making.</li>
-        </ul>
-      </div>
-    </section>
+    <div class="cert-row">
+      <span class="cert-chip">Generative AI Fundamentals — Databricks Academy</span>
+      <span class="cert-chip">Software Engineering VEP — Goldman Sachs</span>
+      <span class="cert-chip">Data Analytics &amp; Visualization Simulation — Accenture</span>
+      <span class="cert-chip">Python through Project Learning — Softvan, India</span>
+    </div>
+  </section>
 
-    <section class="panel" id="skills">
-      <div class="panel-head">
-        <h2>Skills</h2>
-        <span class="panel-tag mono">page 03</span>
-      </div>
-      <div class="skill-grid">
-        <div class="skill-block">
-          <div class="skill-block-head">
-            <span class="skill-dot" style="background:var(--indigo);"></span>
-            <h3>Languages &amp; scripting</h3>
-          </div>
-          <p>SQL (T-SQL, Spark SQL), Python (Pandas, NumPy, Matplotlib,
-            Seaborn), R, DAX, Power Query M, JavaScript, HTML5/CSS3</p>
-        </div>
-        <div class="skill-block">
-          <div class="skill-block-head">
-            <span class="skill-dot" style="background:var(--teal);"></span>
-            <h3>Cloud &amp; data engineering</h3>
-          </div>
-          <p>Azure Databricks, ETL/ELT pipeline design, Star/Snowflake
-            schemas, database migration, performance tuning, Hadoop, Apache
-            NiFi, Spark, REST APIs</p>
-        </div>
-        <div class="skill-block">
-          <div class="skill-block-head">
-            <span class="skill-dot" style="background:var(--amber);"></span>
-            <h3>Analytics &amp; visualization</h3>
-          </div>
-          <p>Power BI (Desktop, Service, Paginated Reports), Tableau, SSMS,
-            Jupyter Notebooks, Git, Google Data Studio, Plotly, SPSS</p>
-        </div>
-        <div class="skill-block">
-          <div class="skill-block-head">
-            <span class="skill-dot" style="background:var(--coral);"></span>
-            <h3>Governance &amp; methods</h3>
-          </div>
-          <p>Data stewardship, Row-Level Security (RLS), metadata governance,
-            time series analysis, statistical modeling</p>
-        </div>
-      </div>
-    </section>
+  <footer class="contact-panel" id="contact">
+    <h2 class="display">Let's talk data.</h2>
+    <p>Open to analytics engineering and data roles. The fastest way to
+      reach me is email.</p>
+    <div class="contact-links">
+      <a href="mailto:vapatel.7969@gmail.com"><span>email</span>vapatel.7969@gmail.com</a>
+      <a href="tel:+13237136003"><span>phone</span>+1 323-713-6003</a>
+      <a href="https://github.com/Vp9917" target="_blank" rel="noopener"><span>github</span>@Vp9917</a>
+      <a href="https://linkedin.com/in/vidhi-patel232" target="_blank" rel="noopener"><span>linkedin</span>/in/vidhi-patel232</a>
+    </div>
+  </footer>
 
-    <section class="panel" id="projects">
-      <div class="panel-head">
-        <h2>Featured project</h2>
-        <span class="panel-tag mono">page 04</span>
-      </div>
-
-      <h3 class="display" style="font-size:17px;font-weight:600;margin-bottom:6px;">E-Commerce Analytics Database</h3>
-      <p class="proj-desc">Built a relational analytics database from 7 raw
-        CSVs (the Olist Brazilian e-commerce dataset, ~100k orders), with a
-        Python loading pipeline, documented data quality checks, and SQL
-        analysis answering specific business questions about delivery
-        performance and revenue.</p>
-
-      <div class="stack-row">
-        <span class="chip">MySQL</span>
-        <span class="chip">Python</span>
-        <span class="chip">pandas</span>
-        <span class="chip">SQLAlchemy</span>
-        <span class="chip">matplotlib</span>
-        <span class="chip">Git</span>
-      </div>
-
-      <div class="metric-row">
-        <div class="metric-tile">
-          <div class="m-num">7</div>
-          <div class="m-label">Related tables designed</div>
-        </div>
-        <div class="metric-tile">
-          <div class="m-num">99,441</div>
-          <div class="m-label">Customer orders loaded</div>
-        </div>
-        <div class="metric-tile">
-          <div class="m-num">2</div>
-          <div class="m-label">Data quality issues found and documented</div>
-        </div>
-      </div>
-
-      <div class="finding-list">
-        <div class="finding">
-          <span class="dot" style="background:rgba(15,154,146,0.12);color:#0b6a64;">DQ</span>
-          <p><strong>Data quality:</strong> found and documented duplicate
-            <code>review_id</code> values in the raw reviews data; deduplicated
-            with a stated, reproducible rule rather than silently dropping rows.</p>
-        </div>
-        <div class="finding">
-          <span class="dot" style="background:rgba(91,95,199,0.12);color:#3c3f96;">Q</span>
-          <p><strong>Analysis:</strong> queried the relationship between
-            delivery lateness and customer review scores, and revenue broken
-            down by state. </p>
-        </div>
-        <div class="finding">
-          <span class="dot" style="background:rgba(232,161,58,0.15);color:#8a5c14;">SE</span>
-          <p><strong>Engineering:</strong> credentials kept out of version
-            control via <code>.env</code> + <code>python-dotenv</code>;
-            environment reproducible via <code>requirements.txt</code>.</p>
-        </div>
-      </div>
-
-      <div class="proj-links">
-        <a class="btn primary" href="https://github.com/Vp9917/ecommerce-analytics" target="_blank" rel="noopener">View repo</a>
-        <a class="btn" href="https://github.com/Vp9917/ecommerce-analytics/blob/main/README.md" target="_blank" rel="noopener">Read README</a>
-      </div>
-    </section>
-
-    <section class="panel" id="education">
-      <div class="panel-head">
-        <h2>Education &amp; certifications</h2>
-        <span class="panel-tag mono">page 05</span>
-      </div>
-
-      <div class="edu-row">
-        <div>
-          <div class="edu-degree">Master of Science, Engineering and Management</div>
-          <div class="edu-school">Westcliff University</div>
-        </div>
-        <div class="edu-date mono">Jul 2026 – Present</div>
-      </div>
-      <div class="edu-row">
-        <div>
-          <div class="edu-degree">Master of Science, Computer Science</div>
-          <div class="edu-school">University of New Haven</div>
-        </div>
-        <div class="edu-date mono">Aug 2021 – May 2023</div>
-      </div>
-      <div class="edu-row">
-        <div>
-          <div class="edu-degree">Bachelor of Engineering, Computer Engineering</div>
-          <div class="edu-school">Alpha College of Engineering &amp; Technology</div>
-        </div>
-        <div class="edu-date mono">Aug 2016 – Aug 2020</div>
-      </div>
-
-      <div class="cert-row">
-        <span class="cert-chip">Generative AI Fundamentals — Databricks Academy</span>
-        <span class="cert-chip">Software Engineering VEP — Goldman Sachs</span>
-        <span class="cert-chip">Data Analytics &amp; Visualization Simulation — Accenture</span>
-        <span class="cert-chip">Python through Project Learning — Softvan, India</span>
-      </div>
-    </section>
-
-    <footer class="panel contact-panel">
-      <div class="panel-head" style="margin-bottom:6px;">
-        <h2>Let's talk data</h2>
-        <span class="panel-tag mono">page 06</span>
-      </div>
-      <p style="color:var(--ink-soft);font-size:14px;">Open to analytics
-        engineering and data roles. The fastest way to reach me is email.</p>
-      <div class="contact-links">
-        <a href="mailto:vapatel.7969@gmail.com"><span>email</span>vapatel.7969@gmail.com</a>
-        <a href="tel:+13237136003"><span>phone</span>+1 323-713-6003</a>
-        <a href="https://github.com/Vp9917" target="_blank" rel="noopener"><span>github</span>@Vp9917</a>
-        <a href="https://linkedin.com/in/vidhi-patel232" target="_blank" rel="noopener"><span>linkedin</span>/in/vidhi-patel232</a>
-      </div>
-    </footer>
-
-  </main>
 </div>
 
 </body>
